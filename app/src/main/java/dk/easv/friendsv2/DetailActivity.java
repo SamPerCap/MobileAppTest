@@ -27,10 +27,7 @@ public class DetailActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST_CODE = 1;
     String TAG = MainActivity.TAG;
 
-    EditText etName;
-    EditText etPhone;
-    EditText etEmail;
-    EditText etUrl;
+    EditText etName, etPhone, etEmail;
     CheckBox cbFavorite;
     ImageView imgView;
 
@@ -42,7 +39,6 @@ public class DetailActivity extends AppCompatActivity {
         Log.d(TAG, "Detail Activity started");
 
         etEmail = findViewById(R.id.etEmail);
-        etUrl = findViewById(R.id.etUrl);
         etName = findViewById(R.id.etName);
         etPhone = findViewById(R.id.etPhone);
         cbFavorite = findViewById(R.id.cbFavorite);
@@ -57,8 +53,8 @@ public class DetailActivity extends AppCompatActivity {
 
         etName.setText(f.getName());
         etEmail.setText(f.getEmail());
-        etUrl.setText(f.getUrl());
         etPhone.setText(f.getPhone());
+        imgView.setImageResource(f.getImage());
         cbFavorite.setChecked(f.isFavorite());
     }
 

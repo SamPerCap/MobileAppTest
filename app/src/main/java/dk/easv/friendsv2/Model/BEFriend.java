@@ -2,6 +2,9 @@ package dk.easv.friendsv2.Model;
 
 
 
+import android.media.Image;
+import android.widget.ImageView;
+
 import java.io.Serializable;
 
 public class BEFriend implements Serializable {
@@ -9,18 +12,18 @@ public class BEFriend implements Serializable {
     private String m_name;
     private String m_phone;
     private String m_email;
-    private String m_url;
+    private int m_profilePicture;
     private Boolean m_isFavorite;
 
-    public BEFriend(String name, String phone, String email, String url) {
-        this(name, phone, email, url, false);
+    public BEFriend(String name, String phone, String email, int profilePicture) {
+        this(name, phone, email, profilePicture, false);
     }
 
-    public BEFriend(String name, String phone, String email, String url, Boolean isFavorite) {
+    public BEFriend(String name, String phone, String email, int profilePicture, Boolean isFavorite) {
         m_name = name;
         m_phone = phone;
         m_email = email;
-        m_url = url;
+        m_profilePicture = profilePicture;
         m_isFavorite = isFavorite;
     }
 
@@ -32,8 +35,8 @@ public class BEFriend implements Serializable {
         return m_email;
     }
 
-    public String getUrl() {
-        return m_url;
+    public int getImage() {
+        return m_profilePicture;
     }
 
 

@@ -13,21 +13,13 @@
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/tvHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Detail"
-        android:layout_gravity="center"
-        style="@style/Base.TextAppearance.AppCompat.Large"/>
-
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="284dp">
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="5dip">
 
             <TextView android:text="Name:" />
@@ -38,27 +30,15 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip">
-
-            <TextView android:text="Email:" />
-
-            <EditText
-                android:id="@+id/etEmail"
-                android:text="Email" />
-        </TableRow>
-
-        <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="5dip">
 
-            <TextView android:text="Url:" />
+            <TextView android:text="Favorite:" />
 
-            <EditText
-                android:id="@+id/etUrl"
-                android:text="Url" />
+            <CheckBox
+                android:id="@+id/cbFavorite"
+                android:checked="false" />
         </TableRow>
 
         <TableRow
@@ -74,87 +54,60 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:padding="5dip">
 
-            <TextView android:text="Favorite:" />
+            <TextView android:text="Email:" />
 
-            <CheckBox
-                android:id="@+id/cbFavorite"
-                android:checked="false" />
+            <EditText
+                android:id="@+id/etEmail"
+                android:text="Email" />
         </TableRow>
 
-        <!--
         <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
             <Button
-                android:id="@+id/btnCancel"
-                android:text="Cancel"
-                android:layout_gravity="center"/>
+                android:id="@+id/btnCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:onClick="camButton"
+                android:text="Cam" />
 
             <Button
-                android:id="@+id/btnOk"
-                android:text="OK"
-                android:layout_gravity="center"/>
+                android:id="@+id/btnCALL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+
+                android:text="Call" />
+
+            <Button
+                android:id="@+id/btnEMAIL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:onClick="mailButton"
+
+                android:text="Email" />
+
+            <Button
+                android:id="@+id/btnSMS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:onClick="smsButton"
+                android:text="SMS" />
         </TableRow>
-        -->
+
     </TableLayout>
-
-    <LinearLayout android:id="@+id/LinearLayout01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:weightSum="4"
-        android:padding="2dp" android:layout_margin="1dp">
-
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnSMS"
-            android:onClick="smsButton"
-            android:text="SMS"
-            android:layout_weight="1"
-            android:layout_margin="1dp"/>
-
-        <Button
-            android:id="@+id/btnCamera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="1dp"
-            android:layout_weight="1"
-            android:onClick="camButton"
-            android:text="Cam" />
-
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnCALL"
-            android:text="Call"
-            android:layout_weight="1"
-
-            android:layout_margin="1dp"/>
-
-        <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnEMAIL"
-            android:onClick="mailButton"
-            android:text="Email"
-            android:layout_weight="1"
-
-            android:layout_margin="1dp"/>
-
-        <Button android:id="@+id/btnBrowser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Home"
-            android:layout_weight="1"
-
-            android:layout_margin="1dp"/>
-
-    </LinearLayout>
-
 
 
 </LinearLayout>
