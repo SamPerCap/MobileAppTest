@@ -11,7 +11,7 @@ public class Friends {
 	public Friends()
 	{
 		m_friends = new ArrayList<BEFriend>();
-		m_friends.add(new BEFriend("Kristofer", "000000", "kris86e1@easv365.dk", R.drawable.kris_photo, true));
+		m_friends.add(new BEFriend("Kristofer", "52525311", "kris86e1@easv365.dk", R.drawable.kris_photo, true));
 		m_friends.add(new BEFriend("Jacob", "000000","jaco4998@easv365.dk", R.drawable.jacob_photo));
 		m_friends.add(new BEFriend("Samuel", "000000","samu1667@easv365.dk", R.drawable.kris_photo, true));
 

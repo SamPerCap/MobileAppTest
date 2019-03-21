@@ -75,7 +75,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:onClick="camButton"
                 android:text="Cam" />
 
             <Button
@@ -84,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_weight="1"
-
+                android:onClick="callButton"
                 android:text="Call" />
 
             <Button

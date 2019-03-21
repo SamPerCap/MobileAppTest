@@ -15,7 +15,7 @@ import dk.easv.friendsv2.Model.Friends;
 
 public class MainActivity extends ListActivity {
 
-    public static String TAG = "Friend2";
+    public static String TAG = "Developer";
 
     Friends m_friends;
 

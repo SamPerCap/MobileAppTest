@@ -5,32 +5,30 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.Serializable;
 
 import dk.easv.friendsv2.Model.BEFriend;
 
 public class DetailActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 1;
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
     String TAG = MainActivity.TAG;
 
     EditText etName, etPhone, etEmail;
     CheckBox cbFavorite;
     ImageView imgView;
-
+    TextView fileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +36,33 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         Log.d(TAG, "Detail Activity started");
 
+        LocateItems();
+        setGUI();
+
+        findViewById(R.id.btnCamera).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                changeView();
+            }
+        });
+    }
+
+    private void changeView() {
+        Log.d(TAG, "Changing view to camera activity view");
+        Intent intent = new Intent(this, cameraActivity.class);
+        startActivity(intent);
+    }
+
+    private void LocateItems() {
         etEmail = findViewById(R.id.etEmail);
         etName = findViewById(R.id.etName);
         etPhone = findViewById(R.id.etPhone);
         cbFavorite = findViewById(R.id.cbFavorite);
         imgView = findViewById(R.id.pictureView);
-
-        setGUI();
     }
 
-    private void setGUI()
-    {
+    private void setGUI() {
         BEFriend f = (BEFriend) getIntent().getSerializableExtra("friend");
 
         etName.setText(f.getName());
@@ -62,8 +76,6 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, "An sms will be send", Toast.LENGTH_LONG)
                 .show();
 
-
-
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
 
             if (checkSelfPermission(Manifest.permission.SEND_SMS)
@@ -75,8 +87,7 @@ public class DetailActivity extends AppCompatActivity {
                 requestPermissions(permissions, PERMISSION_REQUEST_CODE);
                 return;
 
-            }
-            else
+            } else
                 Log.d(TAG, "permission to SEND_SMS granted!");
 
         }
@@ -86,8 +97,7 @@ public class DetailActivity extends AppCompatActivity {
         m.sendTextMessage(etPhone.getText().toString(), null, text, null, null);
     }
 
-    public void smsButton(View view)
-    {
+    public void smsButton(View view) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         alertDialogBuilder.setTitle("SMS Handling");
@@ -95,8 +105,8 @@ public class DetailActivity extends AppCompatActivity {
         alertDialogBuilder
                 .setMessage("Click Direct if SMS should be send directly. Click Start to start SMS app...")
                 .setCancelable(true)
-                .setPositiveButton("Direct",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int id) {
+                .setPositiveButton("Direct", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
                         DetailActivity.this.sendSMS();
                     }
                 })
@@ -113,17 +123,17 @@ public class DetailActivity extends AppCompatActivity {
 
     private void startSMSActivity() {
         Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-        sendIntent.setData(Uri.parse("sms:" + etPhone));
+        sendIntent.setData(Uri.parse("sms:" + etPhone.getText().toString()));
         sendIntent.putExtra("sms_body", "Hi, it goes well on the android course...");
         startActivity(sendIntent);
     }
 
     public void mailButton(View view) {
-        Log.e(TAG, "Email: " + etEmail.getText().toString());
+        Log.d(TAG, "Email: " + etEmail.getText().toString());
 
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("plain/text");
-        String[] receivers = { etEmail.getText().toString() };
+        String[] receivers = {etEmail.getText().toString()};
         emailIntent.putExtra(Intent.EXTRA_EMAIL, receivers);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Test");
         emailIntent.putExtra(Intent.EXTRA_TEXT,
@@ -131,14 +141,11 @@ public class DetailActivity extends AppCompatActivity {
         startActivity(emailIntent);
     }
 
-    public void camButton(View view) {
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        startActivity(intent);
-    }
 
-    public void setPicture(Intent data)
-    {
-        Bitmap photo = (Bitmap) data.getExtras().get("data");
-        imgView.setImageBitmap(photo);
+    public void callButton(View view) {
+        Log.d(TAG,"Call button on click");
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + etPhone.getText().toString()));
+        startActivity(intent);
     }
 }
